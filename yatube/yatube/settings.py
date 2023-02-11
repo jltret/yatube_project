@@ -52,10 +52,18 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'yatube.urls'
 
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
+TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        # Добавлено: Искать шаблоны на уровне проекта
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+
+        # Оставляем True: шаблоны встроенных приложений (например, админки)
+        # нужно искать в директориях приложений
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

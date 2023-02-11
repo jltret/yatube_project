@@ -1,12 +1,11 @@
 # posts/urls.py
 from django.urls import path
 from . import views
+app_name = 'posts'
 
 urlpatterns = [
     # Главная страница
-    path('', views.index),
-    # Страница со списком постов пользователя
-    # path('posts/', views.posts_list),
+    path('', views.index, name='mainpage'),
     # Отдельная страница с информацией о посте
-    path('group/<slug:slug>/', views.group_posts),
+    path('group/<slug:slug>/', views.group_list, name='group_posts')
 ]
