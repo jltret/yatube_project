@@ -5,7 +5,7 @@ User = get_user_model()
 Group = get_user_model()
 
 
-class Post(models.Model, Group.__str__()):
+class Post(models.Model):
     text = models.TextField()
     pub_date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(
@@ -14,17 +14,17 @@ class Post(models.Model, Group.__str__()):
         related_name='posts'
     )
     group = models.ForeignKey(
-        slug = models.SlugField(),
+        'Group',
+        on_delete=models.SET_NULL,
         related_name='group',
         blank=True,
-        null=True,
-        unique=True
+        null=True
     )
 
 
 class Group(models.Model):
     title = models.TextField()
-    slug = models.TextField()
+    slug = models.SlugField()
     description = models.TextField()
 
     def __str__(self):
